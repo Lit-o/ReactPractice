@@ -2,12 +2,12 @@
 import {Component} from 'react';
 import './App.css';
 
-export const Header = () => {
-    return <h2>Gello Gold!</h2>
+export const Header = ({name, surname}) => {
+    return <h2>Hello {name} {surname}</h2>
 }
 
-const Field = () => {
-    const holder = "Enter HERE";
+const Field = (props) => {
+    const holder = "Enter " + props.func() ;
     const styleField = {
         width: '300px'
     }
@@ -17,14 +17,14 @@ const Field = () => {
         style={styleField} />
 }
 
-const Button = () => {
+const Button = (props) => {
     const text = "YES! YES! SAY IT!"
     const res = () => {
-        return 'Ooo ho ho, i\'m from function!'
+        return 'I\'m from function! ' + props.obj.firstObjProp
     }
     const textTag = <p>Yeee, click it</p>
     const isFromFunc = true
-    return <button>{isFromFunc ? res() : textTag}</button>
+    return <button>{isFromFunc ? res() : textTag} </button>
 }
 
 class FieldWithClass extends Component {
@@ -44,9 +44,10 @@ class FieldWithClass extends Component {
 function App() {
     return (
         <div className="App">
-            <Header />
-            <Field />
-            <Button />
+            <Header name="John" surname="Johnovi"/>
+            <Header name="Bohn" surname="Bohnovi"/>
+            <Field func={() => "I\'m result from Function Props"}/>
+            <Button obj={{firstObjProp: 'I\'m from props obj'}}/>
             <FieldWithClass/>
         </div>
     );
