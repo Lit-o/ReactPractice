@@ -43,11 +43,17 @@ class FieldWithClass extends Component {
     }
 }
 
-const names = data.map(obj => {
+const names = data.map((obj, index) => {
     return (
-        <li key={obj.name}>Name: {obj.name} and surname: {obj.surname}</li>
+        <li key={index}>Name: {obj.name} and surname: {obj.surname}</li>
     )
 })
+
+const isNewActiveClassAdded = true
+let classNames = "someFirstClass someSecondClass"
+if (isNewActiveClassAdded) {
+    classNames += ' active'
+}
 
 function App() {
     return (
@@ -57,7 +63,7 @@ function App() {
             <Field func={() => "I\'m result from Function Props"}/>
             <Button obj={{firstObjProp: 'I\'m from props obj'}}/>
             <FieldWithClass/>
-            <ul>
+            <ul className={classNames}>
                 {names}
             </ul>
         </div>
