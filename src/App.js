@@ -6,6 +6,8 @@ export const Header = ({name, surname}) => {
     return <h2>Hello {name} {surname}</h2>
 }
 
+const data = [{name: 'Nameson', surname: 'Surnamen'},{name: 'Jo', surname: 'Surf'},{name: 'Nao', surname: 'Bo'}]
+
 const Field = (props) => {
     const holder = "Enter " + props.func() ;
     const styleField = {
@@ -41,6 +43,12 @@ class FieldWithClass extends Component {
     }
 }
 
+const names = data.map(obj => {
+    return (
+        <li key={obj.name}>Name: {obj.name} and surname: {obj.surname}</li>
+    )
+})
+
 function App() {
     return (
         <div className="App">
@@ -49,6 +57,9 @@ function App() {
             <Field func={() => "I\'m result from Function Props"}/>
             <Button obj={{firstObjProp: 'I\'m from props obj'}}/>
             <FieldWithClass/>
+            <ul>
+                {names}
+            </ul>
         </div>
     );
 }
